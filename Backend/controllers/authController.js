@@ -1,5 +1,5 @@
 import userModel from "../models/userModel";
-import {hashedPassword} from './../helpers/authHelper';
+import { hashedPassword } from './../helpers/authHelper';
 
 export const registerController = async(req, res) => {
     try {
@@ -31,7 +31,15 @@ export const registerController = async(req, res) => {
             })
         }
         //register user
-        const hashedPassword = await hashedPassword()
+        const hashedPassword = await hashedPassword(password);
+        //save
+        const user = new userModel({name,email,phone,address,password:hashedPassword}).save()
+
+        res.status(201).send({
+            success: true,
+            message: 'User Register Successfully',
+            user
+        });
     } catch (error) {
         console.log(error)
         res.status(500).send({
