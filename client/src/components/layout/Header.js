@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink, Link} from 'react-router-dom';
 import {} from 'react-icons';
-import skincare from 'client/public/images/skincare'
 
 const Header = () => {
   return (
