@@ -1,6 +1,5 @@
 import React from 'react';
 import {NavLink, Link} from 'react-router-dom';
-import {} from 'react-icons';
 
 const Header = () => {
   return (
@@ -12,7 +11,12 @@ const Header = () => {
     </button>
     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
       <Link to = '/' className="navbar-brand">
-         SKINCARE APP
+      <img
+        src="/images/skincare.png"
+        alt="Skincare"
+        style={{ height: "50px", marginRight: "10px" }}
+      />
+       SKINCARE APP
       </Link>
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
         <li className="nav-item">
