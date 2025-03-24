@@ -23,7 +23,7 @@ const Contact = () => {
             <BiSupport /> : 1800-0000-0000 (toll free)
           </p>
         </div>
-        <div className="col-md-6 ">
+        <div className="col-md-4 ">
           <img
             src="/images/4220713.jpg"
             alt="contactus"
