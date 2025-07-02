@@ -2,17 +2,23 @@ import React, {useState} from "react";
 import Layout from "../../components/layout/Layout";
 
 const Register = () => {
-  const {name, setName} = useState("")
-  const {email, setEmail} = useState("")
-  const {password, setPassword} = useState("")
-  const {phone, setPhone} = useState("")
-  const {address, setAddress} = useState("")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [phone, setPhone] = useState("")
+  const [address, setAddress] = useState("")
+
+  //form function
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(name,email,password,phone,address);
+  }
 
   return (
     <Layout title="Register-Skincare App">
       <div className="register">
         <h1>Register Page</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
               type="text"
