@@ -1,19 +1,36 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Layout from "../../components/layout/Layout";
-import {toast} from 'react-toastify';
+import { toast } from "react-toastify";
+import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 const Register = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [phone, setPhone] = useState("")
-  const [address, setAddress] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const navigate = useNavigate()
 
   //form function
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(name,email,password,phone,address);
-    toast.success('Registered successfully')
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+        { name, email, password, phone, address }
+      );
+      if(res.data.success){
+        toast.success(res.data.message)
+        navigate('/login');
+      }
+      else {
+        toast.error(res.data.message)
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something weent wrong");
+    }
+  };
 
   return (
     <Layout title="Register-Skincare App">
@@ -24,7 +41,7 @@ const Register = () => {
             <input
               type="text"
               value={name}
-              onChange = {(e)=> setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
               placeholder="Enter your name"
