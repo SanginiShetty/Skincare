@@ -4,9 +4,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
+import { useAuth } from "../../context/auth";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
   //form function
@@ -19,6 +22,12 @@ const Login = () => {
       );
       if (res.data.success) {
         toast.success(res.data.message);
+        setAuth ({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem('auth', JSON.stringify(res.data))
         navigate("/");
       } else {
         toast.error(res.data.message);
