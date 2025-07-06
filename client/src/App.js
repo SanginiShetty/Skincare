@@ -7,12 +7,14 @@ import PageNotFound from './pages/PageNotFound';
 import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
 import 'react-toastify/dist/ReactToastify.css'; 
+import Dashboard from './pages/user/Dashboard';
 
 function App() {
   return (
     <>
     <Routes>
       <Route path='/' element={<HomePage/>} />
+      <Route path='/dashboard' element={<Dashboard/>} />
       <Route path='/register' element={<Register/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/about' element={<About/>} />
